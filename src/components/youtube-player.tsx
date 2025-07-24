@@ -1,0 +1,57 @@
+"use client"
+
+import { useState } from "react"
+import { Play } from "lucide-react"
+
+interface YouTubePlayerProps {
+  videoUrl: string
+  thumbnail?: string
+  title?: string
+}
+
+export function YouTubePlayer({ videoUrl, thumbnail, title }: YouTubePlayerProps) {
+  const [isPlaying, setIsPlaying] = useState(false)
+
+  // Extract video ID from YouTube URL
+  const getVideoId = (url: string): string => {
+    const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/
+    const match = url.match(regExp)
+    return match && match[2].length === 11 ? match[2] : ""
+  }
+
+  const videoId = getVideoId(videoUrl)
+  const embedUrl = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0`
+  const thumbnailUrl = thumbnail || `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`
+
+  if (isPlaying) {
+    return (
+      <div className="relative w-full aspect-video rounded-lg overflow-hidden">
+        <iframe
+          src={embedUrl}
+          title={title || "Course Trailer"}
+          className="w-full h-full"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowFullScreen
+        />
+      </div>
+    )
+  }
+
+  return (
+    <div
+      className="relative w-full aspect-video rounded-lg overflow-hidden cursor-pointer group"
+      onClick={() => setIsPlaying(true)}
+    >
+      <img
+        src={thumbnailUrl || "/placeholder.svg"}
+        alt={title || "Course Trailer"}
+        className="w-full h-full object-cover"
+      />
+      <div className="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center group-hover:bg-opacity-40 transition-all duration-300">
+        <div className="bg-red-600 rounded-full p-4 group-hover:scale-110 transition-transform duration-300">
+          <Play className="w-8 h-8 text-white ml-1" fill="currentColor" />
+        </div>
+      </div>
+    </div>
+  )
+}
