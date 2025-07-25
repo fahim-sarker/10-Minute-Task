@@ -5,11 +5,12 @@ import { YouTubePlayer } from "@/components/youtube-player";
 import { InstructorCard } from "@/components/instructor-card";
 import { FeatureSection } from "@/components/feature-section";
 import { CtaSection } from "@/components/cta-section";
-import { SafeHTML } from "@/lib/html-utlis";
-import { ChecklistSection } from "@/components/chechklist-section";
 import Footer from "@/components/shared/footer";
 import Header from "@/components/shared/header";
 import Banner from "@/components/banner";
+import { getTranslation, type Language } from "@/lib/localization";
+import { SafeHTML } from "@/lib/html-utlis";
+import { ChecklistSection } from "@/components/chechklist-section";
 
 interface PageProps {
   params: {
@@ -31,7 +32,6 @@ export async function generateMetadata({
   }
 
   const { data } = response;
-
   return {
     title: data.seo.title || data.title,
     description: data.seo.description,
@@ -51,6 +51,8 @@ export async function generateStaticParams() {
   return [
     { lang: "en", slug: "ielts-course" },
     { lang: "bn", slug: "ielts-course" },
+    { lang: "en", slug: "spoken-english" },
+    { lang: "bn", slug: "spoken-english" },
   ];
 }
 
@@ -63,21 +65,27 @@ export default async function ProductPage({ params }: PageProps) {
   }
 
   const { data } = response;
+  const t = getTranslation(lang as Language);
 
-  const instructorSections = data.sections.filter(s => s.type === "instructor");
-  const featureSections = data.sections.filter(s => s.type === "features");
-  const pointerSections = data.sections.filter(s => s.type === "pointers");
-  const aboutSections = data.sections.filter(s => s.type === "about");
+  const instructorSections = data.sections.filter(
+    (s: any) => s.type === "instructor"
+  );
+  const featureSections = data.sections.filter(
+    (s: any) => s.type === "features"
+  );
+  const pointerSections = data.sections.filter(
+    (s: any) => s.type === "pointers"
+  );
+  const aboutSections = data.sections.filter((s: any) => s.type === "about");
 
   const trailerVideo = data.media.find(
-    m => m.type === "video" || m.url.includes("youtube")
+    (m: any) => m.type === "video" || m.url.includes("youtube")
   );
-  
 
   return (
     <section className="">
       <Header currentLang={lang} />
-      <Banner />
+      <Banner currentLang={lang as Language} />
 
       <div>
         <div className="container mx-auto text-center max-w-[700px] w-full py-20">
@@ -88,7 +96,7 @@ export default async function ProductPage({ params }: PageProps) {
             content={data.description}
             className="prose prose-lg max-w-none text-gray-600"
             fallback={
-              <p className="text-gray-600">No description available.</p>
+              <p className="text-gray-600">{t.courseDetails.noDescription}</p>
             }
           />
         </div>
@@ -97,12 +105,12 @@ export default async function ProductPage({ params }: PageProps) {
           <div className="bg-white">
             <div className="container mx-auto">
               <h2 className="text-2xl font-bold text-gray-900 my-5 text-center">
-                Course Preview
+                {t.courseDetails.coursePreview}
               </h2>
               <YouTubePlayer
                 videoUrl={trailerVideo.url}
                 thumbnail={trailerVideo.thumbnail}
-                title={trailerVideo.title || "Course Trailer"}
+                title={trailerVideo.title || t.courseDetails.courseTrailer}
               />
             </div>
           </div>
@@ -111,7 +119,7 @@ export default async function ProductPage({ params }: PageProps) {
         {instructorSections.length > 0 && (
           <div className="container mx-auto text-center py-10">
             <h2 className="text-2xl font-bold text-gray-900 mb-6">
-              Meet Your Instructors
+              {t.courseDetails.meetInstructors}
             </h2>
             <div className="space-y-6">
               {instructorSections.map(section => (
@@ -133,12 +141,14 @@ export default async function ProductPage({ params }: PageProps) {
                 </h2>
                 {section.content.items && (
                   <ul className="space-y-3">
-                    {section.content.items.map((item, index) => (
-                      <li key={index} className="flex items-start space-x-3">
-                        <div className="w-2 h-2 bg-blue-600 rounded-full mt-2 flex-shrink-0"></div>
-                        <span className="text-gray-700">{item}</span>
-                      </li>
-                    ))}
+                    {section.content.items.map(
+                      (item: string, index: number) => (
+                        <li key={index} className="flex items-start space-x-3">
+                          <div className="w-2 h-2 bg-blue-600 rounded-full mt-2 flex-shrink-0"></div>
+                          <span className="text-gray-700">{item}</span>
+                        </li>
+                      )
+                    )}
                   </ul>
                 )}
               </div>
@@ -174,7 +184,7 @@ export default async function ProductPage({ params }: PageProps) {
                   className="prose max-w-none text-gray-600"
                   fallback={
                     <p className="text-gray-500 italic">
-                      No details available.
+                      {t.courseDetails.noDetails}
                     </p>
                   }
                 />
@@ -191,35 +201,40 @@ export default async function ProductPage({ params }: PageProps) {
       </div>
 
       <CtaSection ctaText={data.cta_text} price={1000} />
+
       <div className="container mx-auto py-10">
         <div className="max-w-[650px] mx-auto bg-white rounded-lg p-6 shadow-md border border-gray-200">
           <h3 className="font-semibold text-gray-900 mb-4">
-            Course Information
+            {t.courseDetails.courseInformation}
           </h3>
           <div className="space-y-3 text-sm">
             <div className="flex justify-between">
-              <span className="text-gray-600">Duration:</span>
-              <span className="font-medium">Self-paced</span>
+              <span className="text-gray-600">{t.courseDetails.duration}:</span>
+              <span className="font-medium">{t.courseDetails.selfPaced}</span>
             </div>
             <div className="flex justify-between">
-              <span className="text-gray-600">Level:</span>
-              <span className="font-medium">Beginner to Advanced</span>
+              <span className="text-gray-600">{t.courseDetails.level}:</span>
+              <span className="font-medium">
+                {t.courseDetails.beginnerToAdvanced}
+              </span>
             </div>
             <div className="flex justify-between">
-              <span className="text-gray-600">Language:</span>
+              <span className="text-gray-600">{t.courseDetails.language}:</span>
               <span className="font-medium">
                 {lang === "bn" ? "বাংলা" : "English"}
               </span>
             </div>
             <div className="flex justify-between">
-              <span className="text-gray-600">Certificate:</span>
-              <span className="font-medium">Yes</span>
+              <span className="text-gray-600">
+                {t.courseDetails.certificate}:
+              </span>
+              <span className="font-medium">{t.courseDetails.yes}</span>
             </div>
           </div>
         </div>
       </div>
 
-      <Footer />
+      <Footer currentLang={lang as Language} />
     </section>
   );
 }
