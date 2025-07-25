@@ -16,7 +16,7 @@ export default function Banner({ currentLang = "bn" }: BannerProps) {
     <div className="bg-gray-900 flex items-center justify-center lg:py-20 py-8 xl:px-0 px-4">
       <div className="container mx-auto w-full space-y-6">
         <div className="text-center relative">
-          <h1 className=" text-2xl sm:text-3xl md:text-5xl font-bold text-white mb-10 text-center">
+          <h1 className=" text-2xl sm:text-3xl md:text-5xl font-bold text-white md:mb-10 mb-5 text-center">
             <span className="text-white">{t.header.title}</span>
             <span className="text-orange-400 inline-block ml-2 size-[50px]">
               <Star />

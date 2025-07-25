@@ -27,7 +27,7 @@ export function CtaSection({ ctaText, price = 1000 }: CtaSectionProps) {
         {/* Enroll Button */}
         <button
           onClick={handleEnroll}
-          className="w-full sm:w-auto bg-white text-blue-600 px-6 py-3 sm:px-8 sm:py-4 rounded-lg font-semibold text-base sm:text-lg hover:bg-gray-100 transition inline-flex justify-center items-center space-x-2 mb-4"
+          className="w-full sm:w-auto cursor-pointer bg-white text-blue-600 px-6 py-3 sm:px-8 sm:py-4 rounded-lg font-semibold text-base sm:text-lg hover:bg-gray-100 transition inline-flex justify-center items-center space-x-2 mb-4"
         >
           <ShoppingCart className="w-5 h-5" />
           <span>{ctaText.primary}</span>

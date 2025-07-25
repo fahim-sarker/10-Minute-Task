@@ -85,7 +85,7 @@ export default async function ProductPage({ params }: PageProps) {
   return (
     <section className="">
       <Header currentLang={lang} />
-      <main className="mt-[75px]">
+      <main className="mt-[66px]">
       <Banner currentLang={lang as Language} />
         <div className="container mx-auto text-center max-w-[700px] w-full lg:py-20 py-8 xl:px-0 px-4">
           <h1 className="text-2xl lg:text-4xl font-bold text-gray-900 mb-4">
@@ -193,7 +193,7 @@ export default async function ProductPage({ params }: PageProps) {
         )}
 
         {data.checklist.length > 0 && (
-          <div className="container mx-auto lg:my-10 xl:mb-0 mb-5 xl:px-0 px-4">
+          <div className="container mx-auto lg:my-10 mb-5 xl:px-0 px-4">
             <ChecklistSection checklist={data.checklist} />
           </div>
         )}
@@ -202,7 +202,7 @@ export default async function ProductPage({ params }: PageProps) {
       <CtaSection ctaText={data.cta_text} price={1000} />
 
       <div className="container mx-auto lg:py-10 py-5 xl:px-0 px-4 ">
-        <div className="max-w-[650px] mx-auto bg-white rounded-lg p-6 shadow-md border border-gray-200">
+        <div className="bg-white rounded-lg p-6 shadow-md border border-gray-200">
           <h3 className="font-semibold text-gray-900 mb-4">
             {t.courseDetails.courseInformation}
           </h3>
