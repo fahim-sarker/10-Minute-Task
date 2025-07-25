@@ -28,8 +28,8 @@ export function ChecklistSection({
   }, [checklist]);
 
   return (
-    <div className="bg-green-50 rounded-lg p-6 border border-green-200">
-      <h2 className="text-2xl font-bold text-gray-900 mb-6">{title}</h2>
+    <div className="bg-green-50 rounded-lg lg:p-6 p-3 border border-green-200">
+      <h2 className="md:text-2xl text-xl font-bold text-gray-900 mb-6">{title}</h2>
 
       <div className="flex flex-col lg:flex-row gap-6">
         {/* Checklist Items */}

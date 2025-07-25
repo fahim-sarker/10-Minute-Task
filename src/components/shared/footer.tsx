@@ -13,9 +13,9 @@ const Footer = ({ currentLang }: FooterProps) => {
   const t = getTranslation(currentLang);
 
   return (
-    <footer className="bg-gray-100 text-gray-800 py-12">
+    <footer className="bg-gray-100 text-gray-800 lg:py-12 py-5">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-8">
           <div className="space-y-4">
             <Image
               src={Logo || "/placeholder.svg"}

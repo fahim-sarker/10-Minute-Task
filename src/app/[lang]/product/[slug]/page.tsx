@@ -85,11 +85,10 @@ export default async function ProductPage({ params }: PageProps) {
   return (
     <section className="">
       <Header currentLang={lang} />
+      <main className="mt-[75px]">
       <Banner currentLang={lang as Language} />
-
-      <div>
-        <div className="container mx-auto text-center max-w-[700px] w-full py-20">
-          <h1 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
+        <div className="container mx-auto text-center max-w-[700px] w-full lg:py-20 py-8 xl:px-0 px-4">
+          <h1 className="text-2xl lg:text-4xl font-bold text-gray-900 mb-4">
             {data.title}
           </h1>
           <SafeHTML
@@ -103,8 +102,8 @@ export default async function ProductPage({ params }: PageProps) {
 
         {trailerVideo && (
           <div className="bg-white">
-            <div className="container mx-auto">
-              <h2 className="text-2xl font-bold text-gray-900 my-5 text-center">
+            <div className="container mx-auto xl:px-0 px-4">
+              <h2 className="md:text-2xl text-xl font-bold text-gray-900 my-5 text-center">
                 {t.courseDetails.coursePreview}
               </h2>
               <YouTubePlayer
@@ -117,8 +116,8 @@ export default async function ProductPage({ params }: PageProps) {
         )}
 
         {instructorSections.length > 0 && (
-          <div className="container mx-auto text-center py-10">
-            <h2 className="text-2xl font-bold text-gray-900 mb-6">
+          <div className="container mx-auto text-center lg:py-10 py-5 lx:px-0 px-4">
+            <h2 className="md:text-2xl text-xl font-bold text-gray-900 mb-6">
               {t.courseDetails.meetInstructors}
             </h2>
             <div className="space-y-6">
@@ -130,13 +129,13 @@ export default async function ProductPage({ params }: PageProps) {
         )}
 
         {pointerSections.length > 0 && (
-          <div className="container mx-auto py-10">
+          <div className="container mx-auto lg:py-10 py-5 xl:px-0 px-4">
             {pointerSections.map(section => (
               <div
                 key={section.id}
-                className="bg-white rounded-lg p-6 shadow-md border border-gray-200"
+                className="bg-white rounded-lg lg:p-6 p-3 shadow-md border border-gray-200"
               >
-                <h2 className="text-2xl font-bold text-gray-900 mb-6">
+                <h2 className="md:text-2xl text-xl font-bold text-gray-900 mb-6">
                   {section.title}
                 </h2>
                 {section.content.items && (
@@ -157,11 +156,11 @@ export default async function ProductPage({ params }: PageProps) {
         )}
 
         {featureSections.length > 0 && (
-          <div className="container mx-auto space-y-8">
+          <div className="container mx-auto space-y-8 xl:px-0 px-4">
             {featureSections.map(section => (
               <div
                 key={section.id}
-                className="bg-white rounded-lg p-6 shadow-md border border-gray-200"
+                className="bg-white rounded-lg lg:p-6 p-3 shadow-md border border-gray-200"
               >
                 <FeatureSection section={section} />
               </div>
@@ -170,13 +169,13 @@ export default async function ProductPage({ params }: PageProps) {
         )}
 
         {aboutSections.length > 0 && (
-          <div className="container mx-auto py-10 space-y-8">
+          <div className="container mx-auto lg:py-10 py-5 xl:px-0 px-4 space-y-8">
             {aboutSections.map(section => (
               <div
                 key={section.id}
-                className="bg-white rounded-lg p-6 shadow-md border border-gray-200"
+                className="bg-white rounded-lg lg:p-6 p-3 shadow-md border border-gray-200"
               >
-                <h2 className="text-2xl font-bold text-gray-900 mb-4">
+                <h2 className="md:text-2xl text-xl font-bold text-gray-900 mb-4">
                   {section.title}
                 </h2>
                 <SafeHTML
@@ -194,15 +193,15 @@ export default async function ProductPage({ params }: PageProps) {
         )}
 
         {data.checklist.length > 0 && (
-          <div className="container mx-auto my-10">
+          <div className="container mx-auto lg:my-10 xl:mb-0 mb-5 xl:px-0 px-4">
             <ChecklistSection checklist={data.checklist} />
           </div>
         )}
-      </div>
+      </main>
 
       <CtaSection ctaText={data.cta_text} price={1000} />
 
-      <div className="container mx-auto py-10">
+      <div className="container mx-auto lg:py-10 py-5 xl:px-0 px-4 ">
         <div className="max-w-[650px] mx-auto bg-white rounded-lg p-6 shadow-md border border-gray-200">
           <h3 className="font-semibold text-gray-900 mb-4">
             {t.courseDetails.courseInformation}

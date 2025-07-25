@@ -13,17 +13,17 @@ export default function Banner({ currentLang = "bn" }: BannerProps) {
   const t = getTranslation(currentLang);
 
   return (
-    <div className="bg-gray-900 flex items-center justify-center py-20">
+    <div className="bg-gray-900 flex items-center justify-center lg:py-20 py-8 xl:px-0 px-4">
       <div className="container mx-auto w-full space-y-6">
         <div className="text-center relative">
-          <h1 className="text-4xl md:text-5xl font-bold text-white mb-10">
+          <h1 className=" text-2xl sm:text-3xl md:text-5xl font-bold text-white mb-10 text-center">
             <span className="text-white">{t.header.title}</span>
             <span className="text-orange-400 inline-block ml-2 size-[50px]">
               <Star />
             </span>
           </h1>
         </div>
-        <div className="grid md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           <div className="bg-blue-950 rounded-lg overflow-hidden">
             <div className="bg-blue-800 py-2 px-4 w-max rounded-br-lg">
               <span className="text-white text-sm">
@@ -34,7 +34,7 @@ export default function Banner({ currentLang = "bn" }: BannerProps) {
               <h2 className="text-white text-xl mb-6">
                 {t.courses.onlineBatch2025}
               </h2>
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+              <div className="grid grid-cols-2 xl:grid-cols-4 gap-4">
                 <div className="bg-blue-900/50 p-4 rounded-lg">
                   <div className="bg-blue-800/50 p-3 rounded-lg mb-2 mx-auto w-16 h-16 flex items-center justify-center">
                     <Image
@@ -99,7 +99,7 @@ export default function Banner({ currentLang = "bn" }: BannerProps) {
               <h2 className="text-white text-xl mb-6">
                 {t.courses.skillLearning.title}
               </h2>
-              <div className="grid grid-cols-5 gap-2">
+              <div className="inline-grid grid-cols-5 gap-2 justify-center">
                 <Image
                   src={Demoimg || "/placeholder.svg"}
                   width={80}
@@ -146,7 +146,7 @@ export default function Banner({ currentLang = "bn" }: BannerProps) {
           </div>
         </div>
         {/* Bottom Cards */}
-        <div className="grid md:grid-cols-3 gap-6">
+        <div className="grid lg:grid-cols-3 gap-6">
           <div className="bg-teal-900 rounded-lg p-4 flex items-center justify-between">
             <div className="flex items-center">
               <Image

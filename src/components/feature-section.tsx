@@ -17,7 +17,7 @@ export function FeatureSection({ section }: FeatureSectionProps) {
 
   return (
     <div className="space-y-6">
-      <h2 className="text-2xl font-bold text-gray-900 mb-6">{section.title}</h2>
+      <h2 className="md:text-2xl text-xl font-bold text-gray-900 mb-6">{section.title}</h2>
       <div className="grid md:grid-cols-2 gap-6">
         {features.map((feature, index) => {
           const IconComponent = iconMap[feature.icon as keyof typeof iconMap] || CheckCircle
