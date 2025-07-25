@@ -1,19 +1,31 @@
-import type { ApiResponse, TransformedApiResponse, ProductData, Medium, Checklist, Section } from "@/types/product"
+import type {
+  ApiResponse,
+  TransformedApiResponse,
+  ProductData,
+  Medium,
+  Checklist,
+  Section,
+} from "@/types/product";
 
-const API_BASE_URL = "https://api.10minuteschool.com/discovery-service/api/v1"
+const API_BASE_URL = "https://api.10minuteschool.com/discovery-service/api/v1";
 
-function transformApiResponse(apiData: ApiResponse, lang: string): TransformedApiResponse {
-  const data = apiData.data
+function transformApiResponse(
+  apiData: ApiResponse,
+  lang: string
+): TransformedApiResponse {
+  const data = apiData.data;
 
   // Transform media
   const media: Medium[] = data.media.map((item, index) => ({
     id: index + 1,
     type: item.resource_type === "video" ? "video" : "image",
     url:
-      item.resource_type === "video" ? `https://www.youtube.com/watch?v=${item.resource_value}` : item.resource_value,
+      item.resource_type === "video"
+        ? `https://www.youtube.com/watch?v=${item.resource_value}`
+        : item.resource_value,
     thumbnail: item.thumbnail_url || undefined,
     title: item.name || undefined,
-  }))
+  }));
 
   // Transform checklist
   const checklist: Checklist[] = data.checklist.map((item, index) => ({
@@ -21,15 +33,15 @@ function transformApiResponse(apiData: ApiResponse, lang: string): TransformedAp
     title: item.text,
     description: undefined,
     icon: item.icon,
-  }))
+  }));
 
   // Transform sections
-  const sections: Section[] = []
-  let sectionId = 1
+  const sections: Section[] = [];
+  let sectionId = 1;
 
-  data.sections.forEach((section) => {
+  data.sections.forEach(section => {
     if (section.type === "instructors" && section.values.length > 0) {
-      const instructor = section.values[0]
+      const instructor = section.values[0];
       sections.push({
         id: sectionId++,
         type: "instructor",
@@ -43,7 +55,7 @@ function transformApiResponse(apiData: ApiResponse, lang: string): TransformedAp
           },
         },
         order: section.order_idx,
-      })
+      });
     }
 
     if (section.type === "features" && section.values.length > 0) {
@@ -59,7 +71,7 @@ function transformApiResponse(apiData: ApiResponse, lang: string): TransformedAp
           })),
         },
         order: section.order_idx,
-      })
+      });
     }
 
     if (section.type === "pointers" && section.values.length > 0) {
@@ -71,7 +83,7 @@ function transformApiResponse(apiData: ApiResponse, lang: string): TransformedAp
           items: section.values.map((pointer: any) => pointer.text),
         },
         order: section.order_idx,
-      })
+      });
     }
 
     if (section.type === "about" && section.values.length > 0) {
@@ -80,15 +92,17 @@ function transformApiResponse(apiData: ApiResponse, lang: string): TransformedAp
         type: "about",
         title: section.name || "About This Course",
         content: {
-          description: section.values.map((about: any) => about.description).join("<br><br>"),
+          description: section.values
+            .map((about: any) => about.description)
+            .join("<br><br>"),
         },
         order: section.order_idx,
-      })
+      });
     }
-  })
+  });
 
   // Sort sections by order
-  sections.sort((a, b) => a.order - b.order)
+  sections.sort((a, b) => a.order - b.order);
 
   const transformedData: ProductData = {
     slug: data.slug,
@@ -107,43 +121,51 @@ function transformApiResponse(apiData: ApiResponse, lang: string): TransformedAp
       secondary: "",
     },
     sections,
-  }
+  };
 
   return {
     success: true,
     data: transformedData,
-  }
+  };
 }
 
-export async function fetchProductData(slug = "ielts-course", lang = "en"): Promise<TransformedApiResponse> {
+export async function fetchProductData(
+  slug = "ielts-course",
+  lang = "en"
+): Promise<TransformedApiResponse> {
   try {
-    const response = await fetch(`${API_BASE_URL}/products/${slug}?lang=${lang}`, {
-      headers: {
-        "X-TENMS-SOURCE-PLATFORM": "web",
-        accept: "application/json",
-      },
-      next: {
-        revalidate: 3600, // ISR: revalidate every hour
-      },
-    })
+    const response = await fetch(
+      `${API_BASE_URL}/products/${slug}?lang=${lang}`,
+      {
+        headers: {
+          "X-TENMS-SOURCE-PLATFORM": "web",
+          accept: "application/json",
+        },
+        next: {
+          revalidate: 3600, // ISR: revalidate every hour
+        },
+      }
+    );
 
     if (!response.ok) {
-      console.warn(`API request failed with status: ${response.status}. Using fallback data.`)
-      return getFallbackData(slug, lang)
+      console.warn(
+        `API request failed with status: ${response.status}. Using fallback data.`
+      );
+      return getFallbackData(slug, lang);
     }
 
-    const apiData: ApiResponse = await response.json()
+    const apiData: ApiResponse = await response.json();
 
     if (apiData.code !== 200 || !apiData.data) {
-      console.warn("Invalid API response. Using fallback data.")
-      return getFallbackData(slug, lang)
+      console.warn("Invalid API response. Using fallback data.");
+      return getFallbackData(slug, lang);
     }
 
-    return transformApiResponse(apiData, lang)
+    return transformApiResponse(apiData, lang);
   } catch (error) {
-    console.error("Error fetching product data:", error)
-    console.log("Using fallback data for development...")
-    return getFallbackData(slug, lang)
+    console.error("Error fetching product data:", error);
+    console.log("Using fallback data for development...");
+    return getFallbackData(slug, lang);
   }
 }
 
@@ -171,7 +193,8 @@ function getFallbackData(slug: string, lang: string): TransformedApiResponse {
           id: 1,
           type: "video",
           url: "https://www.youtube.com/watch?v=zrlYnaZftEQ",
-          thumbnail: "https://cdn.10minuteschool.com/images/thumbnails/IELTS_new_16_9.png",
+          thumbnail:
+            "https://cdn.10minuteschool.com/images/thumbnails/IELTS_new_16_9.png",
           title: "IELTS Course Preview - Master Your English Skills",
         },
       ],
@@ -206,13 +229,17 @@ function getFallbackData(slug: string, lang: string): TransformedApiResponse {
         title: "IELTS Course by Munzereen Shahid - 10 Minute School",
         description:
           "Master the IELTS exam with our comprehensive course. Expert instruction, practice tests, and proven strategies to achieve your target score.",
-        keywords: "IELTS, English, Test Preparation, Online Course, Munzereen Shahid",
+        keywords:
+          "IELTS, English, Test Preparation, Online Course, Munzereen Shahid",
       },
       cta_text: {
         primary: lang === "bn" ? "কোর্সটি কিনুন" : "Enroll Now",
-        secondary: lang === "bn" ? "আজই শুরু করুন আপনার IELTS যাত্রা" : "Start your IELTS journey today",
+        secondary:
+          lang === "bn"
+            ? "আজই শুরু করুন আপনার IELTS যাত্রা"
+            : "Start your IELTS journey today",
       },
       sections: [],
     },
-  }
+  };
 }

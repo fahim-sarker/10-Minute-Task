@@ -47,8 +47,8 @@ export function YouTubePlayer({ videoUrl, thumbnail, title }: YouTubePlayerProps
         alt={title || "Course Trailer"}
         className="w-full h-full object-cover"
       />
-      <div className="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center group-hover:bg-opacity-40 transition-all duration-300">
-        <div className="bg-red-600 rounded-full p-4 group-hover:scale-110 transition-transform duration-300">
+      <div className="absolute inset-0 bg-opacity-30 flex items-center justify-center group-hover:bg-opacity-40 transition-all duration-300">
+        <div className="bg-black rounded-full h-20 w-20 flex justify-center items-center group-hover:scale-110 transition-transform duration-300">
           <Play className="w-8 h-8 text-white ml-1" fill="currentColor" />
         </div>
       </div>
