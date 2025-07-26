@@ -1,16 +1,15 @@
 import React from "react"
 
 /**
- * Safely creates HTML content for dangerouslySetInnerHTML
- * @param htmlContent - The HTML string content
- * @returns Object with __html property or null if content is invalid
+
+ * @param htmlContent 
+ * @returns
  */
 export function createSafeHTML(htmlContent: string | undefined | null): { __html: string } | null {
   if (!htmlContent || typeof htmlContent !== "string") {
     return null
   }
 
-  // Basic sanitization - remove script tags and other potentially dangerous content
   const sanitized = htmlContent
     .replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, "")
     .replace(/javascript:/gi, "")
@@ -19,9 +18,7 @@ export function createSafeHTML(htmlContent: string | undefined | null): { __html
   return { __html: sanitized }
 }
 
-/**
- * Component for safely rendering HTML content
- */
+
 interface SafeHTMLProps {
   content: string | undefined | null
   className?: string

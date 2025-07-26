@@ -12,7 +12,6 @@ interface YouTubePlayerProps {
 export function YouTubePlayer({ videoUrl, thumbnail, title }: YouTubePlayerProps) {
   const [isPlaying, setIsPlaying] = useState(false)
 
-  // Extract video ID from YouTube URL
   const getVideoId = (url: string): string => {
     const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/
     const match = url.match(regExp)

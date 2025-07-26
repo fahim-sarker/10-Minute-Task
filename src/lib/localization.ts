@@ -161,7 +161,6 @@ export const translations: Record<Language, LocalizedContent> = {
       appDownload: "আমাদের মোবাইল অ্যাপ ডাউনলোড করুন",
       copyright: "২০১৫ - ২০২৫ কপিরাইট © ১০ মিনিট স্কুল। সকল অধিকার সংরক্ষিত।",
     },
-    // Add this to the bn translation
     courseDetails: {
       coursePreview: "কোর্স প্রিভিউ",
       courseTrailer: "কোর্স ট্রেইলার",
@@ -246,7 +245,6 @@ export const translations: Record<Language, LocalizedContent> = {
       copyright:
         "2015 - 2025 Copyright © 10 Minute School. All rights reserved.",
     },
-    // Add this to the en translation
     courseDetails: {
       coursePreview: "Course Preview",
       courseTrailer: "Course Trailer",
@@ -269,4 +267,3 @@ export function getTranslation(language: Language): LocalizedContent {
   return translations[language];
 }
 
-// Remove the old LanguageProvider and useLanguage hook since we're using URL-based routing

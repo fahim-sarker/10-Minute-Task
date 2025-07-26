@@ -83,7 +83,6 @@ export default function Header({ currentLang }: HeaderProps) {
     );
   };
 
-  // Close sidebar on outside click
   useEffect(() => {
     const handleOutsideClick = (e: MouseEvent) => {
       if (
@@ -109,7 +108,6 @@ export default function Header({ currentLang }: HeaderProps) {
     <header className="fixed top-0 left-0 w-full bg-white shadow-sm z-50">
       <div className="container mx-auto px-4 sm:px-6 xl:px-0 py-5">
         <div className="flex justify-between items-center">
-          {/* Logo */}
           <Image
             src={Logo}
             alt="10 Minute School"
@@ -119,7 +117,6 @@ export default function Header({ currentLang }: HeaderProps) {
             priority
           />
 
-          {/* Search (desktop only) */}
           <div className="hidden md:flex flex-1 mx-4 max-w-md bg-gray-100 rounded-full px-4 py-2 items-center">
             <Search size={18} className="text-gray-500 mr-2" />
             <input
@@ -129,7 +126,6 @@ export default function Header({ currentLang }: HeaderProps) {
             />
           </div>
 
-          {/* Desktop Navigation: visible below XL only */}
           <div className="hidden xl:flex items-center space-x-6">
             {navItems.map(item => (
               <div
@@ -160,7 +156,6 @@ export default function Header({ currentLang }: HeaderProps) {
             </button>
           </div>
 
-          {/* Hamburger menu visible on lg up to xl (hidden on xl) */}
           <div className="block xl:hidden">
             <button
               onClick={() => setIsMenuOpen(true)}
@@ -172,7 +167,6 @@ export default function Header({ currentLang }: HeaderProps) {
         </div>
       </div>
 
-      {/* Sidebar drawer (mobile + XL) */}
       <div
         ref={sidebarRef}
         className={`fixed top-0 right-0 h-full p-4 bg-white shadow-lg transform transition-transform duration-500 ease-in-out z-50

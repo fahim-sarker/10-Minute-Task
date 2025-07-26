@@ -142,7 +142,7 @@ export async function fetchProductData(
           accept: "application/json",
         },
         next: {
-          revalidate: 3600, // ISR: revalidate every hour
+          revalidate: 3600, 
         },
       }
     );
@@ -169,6 +169,7 @@ export async function fetchProductData(
   }
 }
 
+// fallback data 
 function getFallbackData(slug: string, lang: string): TransformedApiResponse {
   return {
     success: true,

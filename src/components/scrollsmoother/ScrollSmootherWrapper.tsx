@@ -1,5 +1,4 @@
-"use client";
-
+"use client"
 import { useEffect } from "react";
 import gsap from "gsap";
 import ScrollSmoother from "gsap/ScrollSmoother";
