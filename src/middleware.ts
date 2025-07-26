@@ -5,7 +5,7 @@ const locales = ["en", "bn"];
 const defaultLocale = "en";
 
 function getLocale(request: NextRequest): string {
-  // Check if locale is in pathname
+
   const pathname = request.nextUrl.pathname;
   const pathnameHasLocale = locales.some(
     locale => pathname.startsWith(`/${locale}/`) || pathname === `/${locale}`
@@ -20,7 +20,6 @@ function getLocale(request: NextRequest): string {
     return pathname.split("/")[1];
   }
 
-  // Get locale from Accept-Language header
   const acceptLanguage = request.headers.get("accept-language");
   if (acceptLanguage) {
     const preferredLocale = acceptLanguage
@@ -39,14 +38,12 @@ function getLocale(request: NextRequest): string {
 export function middleware(request: NextRequest) {
   const pathname = request.nextUrl.pathname;
 
-  // Check if pathname has locale
   const pathnameHasLocale = locales.some(
     locale => pathname.startsWith(`/${locale}/`) || pathname === `/${locale}`
   );
 
   if (pathnameHasLocale) return;
 
-  // Redirect if no locale
   const locale = getLocale(request);
   console.log(locale);
 
@@ -56,7 +53,6 @@ export function middleware(request: NextRequest) {
 
 export const config = {
   matcher: [
-    // Skip all internal paths (_next)
     "/((?!_next|api|favicon.ico).*)",
   ],
 };

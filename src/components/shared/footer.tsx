@@ -1,9 +1,11 @@
 import Image from "next/image";
-import { Facebook, Instagram, Linkedin, Youtube } from "lucide-react";
+
 import Logo from "../../../public/assets/svg/logo.svg";
 import Google from "../../../public/assets/images/google.jpg";
 import Playstore from "../../../public/assets/images/playstore.jpg";
 import { getTranslation, type Language } from "@/lib/localization";
+import { Youtube } from "lucide-react";
+import { FaFacebookF, FaInstagram, FaLinkedinIn, FaYoutube } from "react-icons/fa";
 
 interface FooterProps {
   currentLang: Language;
@@ -80,7 +82,7 @@ const Footer = ({ currentLang }: FooterProps) => {
               </li>
             </ul>
           </div>
-          {/* Others Section */}
+
           <div>
             <h4 className="font-semibold mb-4">{t.footer.others.title}</h4>
             <ul className="space-y-2 text-sm">
@@ -154,39 +156,33 @@ const Footer = ({ currentLang }: FooterProps) => {
                 href="#"
                 className="bg-gray-800 text-white p-2 rounded hover:bg-gray-700"
               >
-                <Facebook className="h-4 w-4" />
+                <FaFacebookF   className="h-4 w-4" />
               </a>
               <a
                 href="#"
                 className="bg-gray-800 text-white p-2 rounded hover:bg-gray-700"
               >
-                <Instagram className="h-4 w-4" />
+                <FaInstagram   className="h-4 w-4" />
               </a>
               <a
                 href="#"
                 className="bg-gray-800 text-white p-2 rounded hover:bg-gray-700"
               >
-                <Linkedin className="h-4 w-4" />
+                <FaLinkedinIn  className="h-4 w-4" />
               </a>
               <a
                 href="#"
                 className="bg-gray-800 text-white p-2 rounded hover:bg-gray-700"
               >
-                <Youtube className="h-4 w-4" />
+                <FaYoutube  className="h-4 w-4" />
               </a>
-              <a
-                href="#"
-                className="bg-gray-800 text-white p-2 rounded hover:bg-gray-700"
-              >
-                <div className="h-4 w-4 bg-white rounded-full flex items-center justify-center">
-                  <span className="text-black text-xs font-bold">T</span>
-                </div>
-              </a>
+         
             </div>
           </div>
         </div>
+
         {/* Copyright */}
-        <div className="border-t border-gray-300 mt-8 pt-6 text-center text-sm text-gray-600">
+        <div className="border-t border-gray-300 mt-8 py-6 text-center text-sm text-gray-600">
           <p>{t.footer.copyright}</p>
         </div>
       </div>
