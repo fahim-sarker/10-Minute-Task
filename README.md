@@ -33,9 +33,9 @@ This project is a solution to the Frontend Engineer (Level 1) Assessment for 10 
 - **Deployment**: Docker container ready
 
 
-##  Setup Instructions
+# Setup Instructions
 
-### 1. Clone the repository
+# 1. Clone the repository
 
 ```bash
 git clone https://github.com/fahim-sarker/10-Minute-Task.git
@@ -65,7 +65,3 @@ src/
 ├── components/                         
 ├── lib/                                
 ├── types/    
-
-## Screenshot
-
-![IELTS Course Page](./public/assets/images/fullss.png)
