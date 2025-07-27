@@ -7,7 +7,7 @@ export interface LocalizedContent {
     subtitle: string;
   };
 
-  // Course sections
+  // Course 
   courses: {
     onlineCourse: string;
     onlineBatch2025: string;
@@ -75,7 +75,7 @@ export interface LocalizedContent {
     copyright: string;
   };
 
-  // Add this to the LocalizedContent interface
+
   courseDetails: {
     coursePreview: string;
     courseTrailer: string;

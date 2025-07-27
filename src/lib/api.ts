@@ -15,7 +15,7 @@ function transformApiResponse(
 ): TransformedApiResponse {
   const data = apiData.data;
 
-  // Transform media
+  //  media
   const media: Medium[] = data.media.map((item, index) => ({
     id: index + 1,
     type: item.resource_type === "video" ? "video" : "image",
@@ -27,7 +27,7 @@ function transformApiResponse(
     title: item.name || undefined,
   }));
 
-  // Transform checklist
+  //  checklist
   const checklist: Checklist[] = data.checklist.map((item, index) => ({
     id: index + 1,
     title: item.text,
@@ -35,7 +35,7 @@ function transformApiResponse(
     icon: item.icon,
   }));
 
-  // Transform sections
+  //  sections
   const sections: Section[] = [];
   let sectionId = 1;
 
@@ -101,7 +101,7 @@ function transformApiResponse(
     }
   });
 
-  // Sort sections by order
+
   sections.sort((a, b) => a.order - b.order);
 
   const transformedData: ProductData = {
