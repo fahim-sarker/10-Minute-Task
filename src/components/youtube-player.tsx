@@ -27,7 +27,7 @@ export function YouTubePlayer({ videoUrl, thumbnail, title }: YouTubePlayerProps
       <div className="relative w-full aspect-video rounded-lg overflow-hidden">
         <iframe
           src={embedUrl}
-          title={title || "Course Trailer"}
+          title={title}
           className="w-full h-full"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           allowFullScreen
@@ -42,8 +42,8 @@ export function YouTubePlayer({ videoUrl, thumbnail, title }: YouTubePlayerProps
       onClick={() => setIsPlaying(true)}
     >
       <img
-        src={thumbnailUrl || "/placeholder.svg"}
-        alt={title || "Course Trailer"}
+        src={thumbnailUrl}
+        alt={title}
         className="w-full h-full object-cover"
       />
       <div className="absolute inset-0 bg-opacity-30 flex items-center justify-center group-hover:bg-opacity-40 transition-all duration-300">
