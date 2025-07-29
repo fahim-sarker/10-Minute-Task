@@ -55,13 +55,3 @@ Supports both English and Bangla:
 English: https://10-minute-task-ten.vercel.app/en/product/ielts-course
 Bangla: https://10-minute-task-ten.vercel.app/bn/product/ielts-course
 
-
-
-# Folder Structure
-
-src/
-├── app/
-│   └── [lang]/product/[slug]/page.tsx 
-├── components/                         
-├── lib/                                
-├── types/    
