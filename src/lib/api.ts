@@ -51,7 +51,7 @@ function transformApiResponse(
             name: instructor.name,
             designation: instructor.short_description,
             image: instructor.image,
-            bio: instructor.description.replace(/<[^>]*>/g, ""), // Strip HTML
+            bio: instructor.description.replace(/<[^>]*>/g, ""),
           },
         },
         order: section.order_idx,
